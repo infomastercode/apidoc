@@ -1,0 +1,832 @@
+[
+  {
+    "type": "get",
+    "url": "/desks",
+    "title": "get list all of desk",
+    "group": "Desk",
+    "name": "GetDesk",
+    "description": "<p>Request desk information</p>",
+    "version": "0.0.0",
+    "filename": "myapp/desk.js",
+    "groupTitle": "Desk"
+  },
+  {
+    "type": "get",
+    "url": "/desks/:id",
+    "title": "get desk form (by id)",
+    "group": "Desk",
+    "name": "GetProductById",
+    "description": "<p>Request desk (master and detail) information (by id)</p>",
+    "version": "0.0.0",
+    "filename": "myapp/desk.js",
+    "groupTitle": "Desk"
+  },
+  {
+    "type": "put",
+    "url": "/desks/:id/detail",
+    "title": "add product into desk",
+    "group": "Desk",
+    "name": "PutDeskDetailAdd",
+    "description": "<p>Adding a product into desk</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id_desk_detail",
+            "description": "<p>Optional id of the Product  (auto increment).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "reference",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "product_name",
+            "description": "<p>Mandatory product name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_cost",
+            "description": "<p>Optional the unit cost.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_price",
+            "description": "<p>Optional the unit price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Tinyint",
+            "optional": false,
+            "field": "active",
+            "description": "<p>0 = delete, 1 = active, 2 = inactive</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_add",
+            "description": "<p>Date Added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_upd",
+            "description": "<p>Date Updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\": 4711\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>data's list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.status",
+            "description": "<p><code>S</code> = success, <code>E</code> = error</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.message",
+            "description": "<p>message response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "data.id_product",
+            "description": "<p>id product</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "myapp/desk.js",
+    "groupTitle": "Desk"
+  },
+  {
+    "type": "put",
+    "url": "/products",
+    "title": "edit product",
+    "group": "Desk",
+    "name": "PutProduct",
+    "description": "<p>Editing a product</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id_product",
+            "description": "<p>Optional id of the Product  (auto increment).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "reference",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "product_name",
+            "description": "<p>Mandatory product name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_cost",
+            "description": "<p>Optional the unit cost.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_price",
+            "description": "<p>Optional the unit price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Tinyint",
+            "optional": false,
+            "field": "active",
+            "description": "<p>0 = delete, 1 = active, 2 = inactive</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_add",
+            "description": "<p>Date Added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_upd",
+            "description": "<p>Date Updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\": 4711\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>data's list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.status",
+            "description": "<p><code>S</code> = success, <code>E</code> = error</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.message",
+            "description": "<p>message response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "data.id_product",
+            "description": "<p>id product</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "myapp/desk.js",
+    "groupTitle": "Desk"
+  },
+  {
+    "type": "put",
+    "url": "/products",
+    "title": "edit product",
+    "group": "Desk",
+    "name": "PutProduct",
+    "description": "<p>Editing a product</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id_product",
+            "description": "<p>Optional id of the Product  (auto increment).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "reference",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "product_name",
+            "description": "<p>Mandatory product name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_cost",
+            "description": "<p>Optional the unit cost.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_price",
+            "description": "<p>Optional the unit price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Tinyint",
+            "optional": false,
+            "field": "active",
+            "description": "<p>0 = delete, 1 = active, 2 = inactive</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_add",
+            "description": "<p>Date Added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_upd",
+            "description": "<p>Date Updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\": 4711\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>data's list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.status",
+            "description": "<p><code>S</code> = success, <code>E</code> = error</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.message",
+            "description": "<p>message response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "data.id_product",
+            "description": "<p>id product</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "myapp/orders.js",
+    "groupTitle": "Desk"
+  },
+  {
+    "type": "get",
+    "url": "/orders",
+    "title": "get all list of orders",
+    "group": "Orders",
+    "name": "GetOrders",
+    "description": "<p>Request orders information</p>",
+    "version": "0.0.0",
+    "filename": "myapp/orders.js",
+    "groupTitle": "Orders"
+  },
+  {
+    "type": "get",
+    "url": "/orders/:id",
+    "title": "get orders form (by id)",
+    "group": "Orders",
+    "name": "GetOrdersById",
+    "description": "<p>Request orders (master and detail) information (by id)</p>",
+    "version": "0.0.0",
+    "filename": "myapp/orders.js",
+    "groupTitle": "Orders"
+  },
+  {
+    "type": "post",
+    "url": "/orders",
+    "title": "add orders",
+    "group": "Orders",
+    "name": "PostOrders",
+    "description": "<p>Creating a new orders and adding a new product into orders</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id_orders",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "orders_no",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "status",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Tinyint",
+            "optional": false,
+            "field": "active",
+            "description": "<p>0 = delete, 1 = active, 2 = inactive</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_add",
+            "description": "<p>Date Added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_upd",
+            "description": "<p>Date Updated</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object[]",
+            "optional": false,
+            "field": "detail",
+            "description": "<p>detail's list</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "detail.id_orders_detail",
+            "description": "<p>id orders detail</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "detail.id_orders",
+            "description": "<p>id orders</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "detail.id_product",
+            "description": "<p>id id_product</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Float",
+            "optional": false,
+            "field": "detail.unit_price",
+            "description": "<p>unit price</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "detail.qty",
+            "description": "<p>quantity</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "    {\n      \"id_orders\": \"1\",\n\t\t \"orders_no\": \"OD0001\",\n\t\t \"status\": \"OPEN\",\n\t\t \"detail\": [\n\t\t\t{\n\t\t\t\t\"id_orders_detail\": \"\",\n\t\t\t\t\"id_orders\": \"\",\n\t\t\t\t\"id_product\": \"\",\n\t\t\t\t\"unit_price\": \"\",\n\t\t\t\t\"qty\": \"\",\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id_orders_detail\": \"\",\n\t\t\t\t\"id_orders\": \"\",\n\t\t\t\t\"id_product\": \"\",\n\t\t\t\t\"unit_price\": \"\",\n\t\t\t\t\"qty\": \"\",\n\t\t\t},\n \t\t],\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>data's list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.status",
+            "description": "<p><code>S</code> = success, <code>E</code> = error</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.message",
+            "description": "<p>message response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "data.id_product",
+            "description": "<p>id product</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "myapp/orders.js",
+    "groupTitle": "Orders"
+  },
+  {
+    "type": "get",
+    "url": "/products",
+    "title": "get product",
+    "group": "Product",
+    "name": "GetProduct",
+    "description": "<p>Request product information</p>",
+    "version": "0.0.0",
+    "filename": "myapp/product.js",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "get",
+    "url": "/products/:id",
+    "title": "get product (by id)",
+    "group": "Product",
+    "name": "GetProductById",
+    "description": "<p>Request product information (by id)</p>",
+    "version": "0.0.0",
+    "filename": "myapp/product.js",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "post",
+    "url": "/products",
+    "title": "add product",
+    "group": "Product",
+    "name": "PostProduct",
+    "description": "<p>Adding a new product</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id_product",
+            "description": "<p>Optional id of the Product  (auto increment).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "reference",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "product_name",
+            "description": "<p>Mandatory product name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_cost",
+            "description": "<p>Optional the unit cost.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_price",
+            "description": "<p>Optional the unit price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Tinyint",
+            "optional": false,
+            "field": "active",
+            "description": "<p>0 = delete, 1 = active, 2 = inactive</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_add",
+            "description": "<p>Date Added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_upd",
+            "description": "<p>Date Updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\": 4711\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>data's list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.status",
+            "description": "<p><code>S</code> = success, <code>E</code> = error</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.message",
+            "description": "<p>message response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "data.id_product",
+            "description": "<p>id product</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "myapp/product.js",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "put",
+    "url": "/products",
+    "title": "edit product",
+    "group": "Product",
+    "name": "PutProduct",
+    "description": "<p>Editing a product</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id_product",
+            "description": "<p>Optional id of the Product  (auto increment).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "reference",
+            "description": "<p>Optional Reference of the Product.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "product_name",
+            "description": "<p>Mandatory product name.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_cost",
+            "description": "<p>Optional the unit cost.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "unit_price",
+            "description": "<p>Optional the unit price.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Tinyint",
+            "optional": false,
+            "field": "active",
+            "description": "<p>0 = delete, 1 = active, 2 = inactive</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_add",
+            "description": "<p>Date Added</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "datetime",
+            "optional": false,
+            "field": "date_upd",
+            "description": "<p>Date Updated</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\": 4711\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>data's list</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.status",
+            "description": "<p><code>S</code> = success, <code>E</code> = error</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "data.message",
+            "description": "<p>message response</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "data.id_product",
+            "description": "<p>id product</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "myapp/product.js",
+    "groupTitle": "Product"
+  },
+  {
+    "type": "get",
+    "url": "/users/:id",
+    "title": "",
+    "group": "User",
+    "version": "0.0.0",
+    "filename": "myapp/user.js",
+    "groupTitle": "User",
+    "name": "GetUsersId"
+  }
+]

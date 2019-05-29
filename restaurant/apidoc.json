@@ -1,0 +1,16 @@
+{
+    "name": "example api",
+    "version": "0.1.0",
+    "description": "example",
+    "title": "example",
+    "order": [
+        "Error",
+        "Define",
+        "PostTitleAndError",
+        "PostError"
+    ],
+    "template":
+    {
+        "forceLanguage": "en"
+    }
+}
